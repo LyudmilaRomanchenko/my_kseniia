@@ -1,8 +1,9 @@
 import Phaser from 'phaser';
+import IntroScene from './Scenes/IntroScene';
 import logoImg from './assets/bg.jpg';
-import father from './assets/father.png';
-import mother from './assets/mother.png';
-import kseniia from './assets/kseniia.png';
+// import father from './assets/father.png';
+// import mother from './assets/mother.png';
+// import kseniia from './assets/kseniia.png';
 
 class MyGame extends Phaser.Scene
 {
@@ -15,9 +16,9 @@ class MyGame extends Phaser.Scene
     {
         this.mainContainer = this.add.container(this.scale.width / 2, this.scale.height / 2);
         this.load.image('bg', logoImg);
-        this.load.image('father', father);
-        this.load.image('mother', mother);
-        this.load.image('kseniia', kseniia);
+        // this.load.image('father', father);
+        // this.load.image('mother', mother);
+        // this.load.image('kseniia', kseniia);
 
         this.mainContainer.setDepth(100)
 
@@ -26,21 +27,27 @@ class MyGame extends Phaser.Scene
     create ()
     {
         this.logo = this.add.image(this.scale.width / 2, this.scale.height / 2, 'bg');
-        this.father = this.add.image(this.scale.width / 2, this.scale.height / 2, 'father');
-        this.mother = this.add.image(this.scale.width / 2, this.scale.height / 2, 'mother');
-        this.kseniia = this.add.image(this.scale.width / 2, this.scale.height / 2, 'kseniia');
+        // this.father = this.add.image(this.scale.width / 2, this.scale.height / 2, 'father');
+        // this.mother = this.add.image(this.scale.width / 2, this.scale.height / 2, 'mother');
+        // this.kseniia = this.add.image(this.scale.width / 2, this.scale.height / 2, 'kseniia');
 
-        this.mainContainer.add([this.father, this.mother, this.kseniia]);
+        // this.mainContainer.add([this.father, this.mother, this.kseniia]);
 
-        this.father.setPosition(0, -250),
-        this.mother.setPosition(0, 250),
-            this.kseniia.setPosition(0, 0)
+        // this.father.setPosition(0, -250),
+        // this.mother.setPosition(0, 250),
+        //     this.kseniia.setPosition(0, 0)
         
-        this.players = [this.father, this.mother, this.kseniia]
-        this.players.forEach(element => element.setInteractive().once('pointerdown', this.onClick, this))
+        // this.players = [this.father, this.mother, this.kseniia]
+        // this.players.forEach(element => element.setInteractive().once('pointerdown', this.onClick, this))
+
+
+        this.introScene = new IntroScene(this)
+        // this.mainContainer.add([this.introScene]);
+        console.log(this.introScene);
+
 
         this.scale.on('resize', this.resize, this);
-        console.log(this.logo);
+        // console.log(this.logo);
 
 
     //     gameSize.width;
@@ -56,9 +63,9 @@ class MyGame extends Phaser.Scene
         // });
     }
 
-    onClick() {
-        console.log('click');
-    }
+    // onClick() {
+    //     console.log('click');
+    // }
 
     resize (gameSize, baseSize, displaySize, resolution)
 {
@@ -70,6 +77,12 @@ class MyGame extends Phaser.Scene
         this.logo.setSize(width, height);
         this.logo.setPosition(width / 2, height / 2);
         console.log(this.logo);
+
+        // this.introScene = new IntroScene(this)
+        // this.mainContainer.add([this.introScene]);
+        // this.introScene.setDepth(1000000000)
+        // this.sort()
+        // console.log("this.introScene");
 
     
 }
