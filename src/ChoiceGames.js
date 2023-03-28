@@ -25,7 +25,7 @@ export default class ChoiceGames extends Phaser.GameObjects.Container {
 
         this.add([this.icon_custom]);
 
-        this.icon_custom.setPosition(0, -250).setScale(2)
+        this.icon_custom.setPosition(0, -250).setScale(1.5)
         // this.mother.setPosition(0, 250),
         //     this.kseniia.setPosition(0, 0)
         

@@ -1,13 +1,16 @@
 import Phaser from 'phaser';
 import IntroScene from './Scenes/IntroScene';
-import logoImg from './assets/bg.jpg';
+import bgImg from './assets/bg.jpg';
 import father from './assets/father.png';
 import mother from './assets/mother.png';
 import kseniia from './assets/kseniia.png';
 import father_big from './assets/textures/father_big.png';
 import mother_big from './assets/textures/mother_big.png';
+import mother_big_glasses_a from './assets/textures/mother_big_glasses_a.png';
+
 import kseniia_big from './assets/textures/kseniia_big.png';
 import icon_custom from './assets/sheets/icon_custom.png';
+
 
 
 import Preloader from './Preloader';
@@ -24,12 +27,14 @@ class MyGame extends Phaser.Scene
     preload ()
     {
         this.mainContainer = this.add.container(this.scale.width / 2, this.scale.height / 2);
-        this.load.image('bg', logoImg);
+        this.load.image('bg', bgImg);
         this.load.image('father', father);
         this.load.image('mother', mother);
         this.load.image('kseniia', kseniia);
         this.load.image('father_big', father_big);
         this.load.image('mother_big', mother_big);
+        this.load.image('mother_glasses_a', mother_big_glasses_a);
+
         this.load.image('kseniia_big', kseniia_big);
         this.load.image('icon_custom', icon_custom);
 
