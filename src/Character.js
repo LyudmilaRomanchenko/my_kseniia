@@ -10,6 +10,7 @@ export default class Character extends Phaser.GameObjects.Container {
         this.tweens = scene.tweens;
         this.assets = assets;
         this.init(this.assets)
+        this.initChange()
     }
 
     //  preload ()
@@ -39,6 +40,56 @@ export default class Character extends Phaser.GameObjects.Container {
         
         // this.players = [this.father, this.mother, this.kseniia]
         // this.players.forEach(element => element.setInteractive().once('pointerdown', this.onClick, this))
+
+    }
+
+    initChange() {
+        eventsCenter.on('customization', this.onCustomization, this);
+        // eventsCenter.on('playerAnimalAnimation', this.onAnimalAnimation, this);
+
+    }
+
+    onCustomization(obj) {
+        // console.log("CHAR CUST", obj.img.player);
+        const img = obj.img.img;
+        const player = obj.img.player;
+        const playerLength = obj.img.player.length;
+
+
+        const choose = img.slice(5 + playerLength)
+        const asset = `${player}_big${choose}`
+        console.log("CHAR CUST IMG AAAAAAAAA", choose);
+
+
+        choose.includes('hat') ? this.addHat(asset) : this.addGlasses(asset)
+        
+    }
+
+    // onAnimalAnimation(obj) {
+    //     console.log("onAnimalAnimation AAAAAAAAAAAAAA", this.faceBig);
+    //     this.animal = this.scene.add.image(this.scene.scale.width / 2, this.scene.scale.height / 2, obj).setScale(1.2);
+    //     // this.faceBig.setVisible(false)
+    //     this.hideFaceBig()
+    // }
+
+    addGlasses(img) {
+        if (this.glasses) {
+            this.glasses.setTexture(img)
+            return;
+        }
+        this.glasses = this.scene.add.image(0, 0, img);
+        this.add([this.glasses]);
+
+    }
+
+    addHat(img) {
+        console.log('HAAAAAAAAAAAAAAAAAT');
+        if (this.hat) {
+            this.hat.setTexture(img)
+            return;
+        }
+        this.hat = this.scene.add.image(0, 0, img).setPosition(0, -100);
+        this.add([this.hat]);
 
     }
 
@@ -86,6 +137,10 @@ export default class Character extends Phaser.GameObjects.Container {
         return this;
     }
 
+    hideFaceBig() {
+        this.faceBig.setVisible(false)
+    }
+
     addAsset(asset, depth) {
         if (!asset) {
             return
@@ -114,7 +169,7 @@ export default class Character extends Phaser.GameObjects.Container {
     }
 
     addCustomizations() {
-        console.log('jjjjjjjjjjj');
+        // console.log('jjjjjjjjjjj');
         this.tweens.add({
             targets: this,
             delay: 1000,
@@ -122,7 +177,20 @@ export default class Character extends Phaser.GameObjects.Container {
             scale: 0.8,
             onStart: () => {
                 this.addFaceBig().setPosition(0, -100)
-        this.addAsset(this.assets.glasses_a, 2)
+                this.addAsset(this.assets.glasses_a, 2)
+            },
+        });
+    }
+
+     addAnimalsScene() {
+        console.log('addAnimalsScene');
+        this.tweens.add({
+            targets: this,
+            delay: 1000,
+            duration: 500,
+            scale: 0.8,
+            onStart: () => {
+                this.addFaceBig().setPosition(0, -100)
             },
         });
     }
